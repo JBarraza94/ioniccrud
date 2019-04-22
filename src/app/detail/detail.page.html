@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ person.name.title }} {{ person.name.first }} {{ person.name.last }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img [src]="person.picture.large" alt="">
+      </ion-avatar>
+      <ion-label>
+        {{ person.name.title }} {{ person.name.first }} {{ person.name.last }}
+      </ion-label>
+    </ion-item>
+    <ion-card-content>
+      <ion-item>
+        <ion-icon name="home" slot="start"></ion-icon>
+        <h2>{{ person.location.street }}</h2>
+        <p>{{ person.location.city }}, {{ person.location.state }}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="call" slot="start"></ion-icon>
+        <p>{{ person.phone }}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="mail" slot="start"></ion-icon>
+        <p>{{ person.email }}</p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

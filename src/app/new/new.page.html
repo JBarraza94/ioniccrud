@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add New Person</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="logForm()">
+    <ion-list-header>Name</ion-list-header>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="person.name.title" name="Title" placeholder="Title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="person.name.first" name="firstName" placeholder="First Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="person.name.last" name="lastName" placeholder="Last Name"></ion-input>
+    </ion-item>
+    
+    <ion-list>
+      <ion-radio-group [(ngModel)]="person.gender" name="gender">
+        <ion-list-header>
+          Gender
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Male</ion-label>
+          <ion-radio value="male" name="gender" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Female</ion-label>
+          <ion-radio value="female" name="gender"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-list-header>Personal information</ion-list-header>
+    <ion-item>
+      <ion-input type="tel" placeholder="Phone" [(ngModel)]="person.phone" name="phone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="email" placeholder="Email" [(ngModel)]="person.email" name="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Street" [(ngModel)]="person.location.street" name="street"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="City" [(ngModel)]="person.location.city" name="city"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="State" [(ngModel)]="person.location.state" name="state"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" expand="full">Guardar</ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="toggleReorder()">
+        <ion-icon slot="icon-only" name="more"></ion-icon>
+      </ion-button>
+      <ion-button (click)="pushPage('new')">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title>
+      People finder
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="Search..." #searchTerm (ionInput)="filterItems(searchTerm.value)"></ion-searchbar>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list (ionItemReorder)="reorderItems($event)">
+    <ion-reorder-group [disabled]="shouldReorder">
+      <ion-item-sliding *ngFor="let person of service.peopleFilter">
+        <ion-item  (click)="pushDetail(person)">
+          <ion-avatar slot="start">
+            <img [src]="person.picture.medium" alt="">
+          </ion-avatar>
+          {{ person.name.title }} {{person.name.first}} {{person.name.last}}
+          <ion-note slot="end">{{ person.phone}}</ion-note>
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+        <ion-item-options side="start">
+          <ion-item-option (click)="deleteItem(person)" color="danger">
+            <ion-icon slot="top" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item-options side="end">
+          <ion-item-option color="primary">
+            <ion-icon name="flag" slot="top"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-reorder-group>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+    
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>{{ date | date }}</ion-title>
+  </ion-toolbar>
+</ion-footer>
